@@ -128,5 +128,6 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',
     Route::get('/admin/order-invoice/{id}', [AdminOrderController::class, 'invoice'])->name('admin.order-invoice');
     Route::get('/admin/all-download-order-invoice/{id}', [AdminOrderController::class, 'downloadInvoice'])->name('admin.download-order-invoice');
     Route::get('/admin/order-delete/{id}', [AdminOrderController::class, 'delete'])->name('admin.order-delete');
+    Route::get('/admin/order-del', [AdminOrderController::class, 'defglete'])->name('admin.ohjder-delete');
 
 });
