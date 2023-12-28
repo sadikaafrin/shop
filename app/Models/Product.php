@@ -71,6 +71,7 @@ class Product extends Model
         $product->stock_amount              = $request->stock_amount;
         $product->short_description         = $request->short_description;
         $product->long_description          = $request->long_description;
+        $product->sales_count          = $request->sales_count;
 
         $product->product_status = $request->product_status;
 
@@ -103,5 +104,9 @@ class Product extends Model
     public function otherImages()
     {
         return $this->hasMany(OtherImage::class);
+    }
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
     }
 }

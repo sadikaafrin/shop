@@ -15,6 +15,7 @@ use App\Http\Controllers\CustomerProfileController;
 use App\Http\Controllers\CouponController;
 use App\Http\Controllers\AdminOrderController;
 use App\Http\Controllers\SslCommerzPaymentController;
+use App\Http\Controllers\ReviewController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,6 +31,8 @@ use App\Http\Controllers\SslCommerzPaymentController;
 Route::get('/', [WebsiteController::class, 'index'])->name('home');
 Route::get('/product-category/{id}', [WebsiteController::class, 'categoryProduct'])->name('product-category');
 Route::get('/product-detail/{id}', [WebsiteController::class, 'productDetail'])->name('product-detail');
+Route::post('/product-detail', [ReviewController::class, 'reviewStore'])->name('review.store');
+
 Route::post('/cart/add/{id}', [CartController::class, 'index'])->name('cart.add');
 Route::get('/cart/show', [CartController::class, 'show'])->name('cart.show');
 //Route::get('/cart/delete/{id}', [CartController::class, 'delete'])->name('cart.delete');
@@ -128,6 +131,5 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',
     Route::get('/admin/order-invoice/{id}', [AdminOrderController::class, 'invoice'])->name('admin.order-invoice');
     Route::get('/admin/all-download-order-invoice/{id}', [AdminOrderController::class, 'downloadInvoice'])->name('admin.download-order-invoice');
     Route::get('/admin/order-delete/{id}', [AdminOrderController::class, 'delete'])->name('admin.order-delete');
-    Route::get('/admin/order-del', [AdminOrderController::class, 'defglete'])->name('admin.ohjder-delete');
 
 });

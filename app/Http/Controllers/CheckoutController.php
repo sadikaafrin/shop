@@ -39,7 +39,6 @@ class CheckoutController extends Controller
     public function coupon(Request $request)
     {
         $coupon = Coupon::where('code', $request->code)->first();
-
         if ($coupon) {
             //Apply Coupon
             session()->put('coupon_id', $coupon->id);
@@ -52,8 +51,6 @@ class CheckoutController extends Controller
                     $this->order->save();
                 }
             }
-
-
             return back()->with('message', 'Coupon applied successfully.');
         }
         else {
@@ -61,8 +58,6 @@ class CheckoutController extends Controller
             return back()->with('message', 'Invalid coupon code. Please check and try again.');
         }
     }
-
-
 
     public function close()
     {
@@ -127,6 +122,7 @@ class CheckoutController extends Controller
 //        Session::forget('coupon_id');
 //        Session::forget('code');
 
+
         if ($request->payment_type == 'online')
         {
                $this->order->transaction_id = uniqid();
@@ -141,30 +137,15 @@ class CheckoutController extends Controller
             $this->orderDetail->product_name = $item->name;
             $this->orderDetail->product_price = $item->price;
             $this->orderDetail->product_qty = $item->qty;
+
             $this->orderDetail->save();
 
-//            $this->product = Product::find( $item->id)->first();
-//            $this->product->stock_amount = $this->product->stock_amount-$item->qty;
-//            $this->product->save();
-
-
-            $this->product = Product::find($item->id)->first();
-
-            // Check if there is enough stock
-            if ($this->product->stock_amount >= $item->qty) {
-                // Update stock
-                $this->product->stock_amount -= $item->qty;
-                $this->product->save();
-            } else {
-                return back()->with('message', 'Out of stock.');
-
-            }
+            $this->product = Product::find( $item->id);
+            $this->product->stock_amount = $this->product->stock_amount-$item->qty;
+            $this->product->sales_count =  $this->product->sales_count + 1;
+            $this->product->save();
 
             Cart::remove($item->rowId);
-
-//            $this->product = Product::find($item->id);
-//            $this->product->sales_count =  $this->product->sales_count + 1;
-//            $this->product->save();
 
         }
 

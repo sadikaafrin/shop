@@ -111,37 +111,26 @@
                             </div>
                             <hr />
                             <p class="text-center">{{session('message')}}</p>
-
-                            <form action="{{route('cart.add', ['id' => $product->id])}}" method="POST">
-                             @csrf
                                 @if($product->stock_amount > 0)
                                     <lablel class="btn-soft-success">In Stock</lablel>
-                                @else
-                                    <lablel class="bg-danger">Out of Stock</lablel>
-                                @endif
-                                <div class="cart_extra">
-                                <div class="row">
-                                    <label class="col-md-6">Cart Product Quantity</label>
-                                    <div class="col-md-4 ">
-                                        <input type="number" value="1" min="1" max="{{$product->stock_amount}}" required class="form-control" name="qty">
+                                    <div class="cart_extra">
+                                        <div class="row">
+                                            <form action="{{route('cart.add', ['id' => $product->id])}}" method="POST">
+                                                @csrf
+                                            <label class="col-md-6">Cart Product Quantity</label>
+                                            <div class="col-md-4 ">
+                                                <input type="number" value="1" min="1" max="{{$product->stock_amount}}" required class="form-control" name="qty">
+                                                <button class="btn btn-success" type="submit">Add to card</button>
+                                            </div>
+                                            </form>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
-                                @if ($product->stock_amount > 0)
-                            <div class="iziToast-wrapper-bottomCenter">
-                               <div class="row align-items-end">
-                                   <div class="col-lg-4 col-md-4 col-12">
-                                       <div class="button cart_buttons">
-                                           <button type="submit" class="button-hover-addcart button" style="background-color: #0a53be">Add To Cart</button>
-                                       </div>
-                                   </div>
-                               </div>
-                            </div>
                                 @else
-                                    <lablel class="bg-danger">Out of Stock</lablel>
+                                    <lablel class="btn btn-danger">Out of Stock</lablel>
                                 @endif
 
-                            </form>
+
+
                             <hr />
                             <ul class="product-meta">
                                 <li>SKU: <a href="#">BE45VGRT</a></li>
@@ -174,11 +163,11 @@
                                 <li class="nav-item">
                                     <a class="nav-link active" id="Description-tab" data-bs-toggle="tab" href="#Description" role="tab" aria-controls="Description" aria-selected="true">Description</a>
                                 </li>
+{{--                                <li class="nav-item">--}}
+{{--                                    <a class="nav-link" id="Additional-info-tab" data-bs-toggle="tab" href="#Additional-info" role="tab" aria-controls="Additional-info" aria-selected="false">Additional info</a>--}}
+{{--                                </li>--}}
                                 <li class="nav-item">
-                                    <a class="nav-link" id="Additional-info-tab" data-bs-toggle="tab" href="#Additional-info" role="tab" aria-controls="Additional-info" aria-selected="false">Additional info</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" id="Reviews-tab" data-bs-toggle="tab" href="#Reviews" role="tab" aria-controls="Reviews" aria-selected="false">Reviews (2)</a>
+                                    <a class="nav-link" id="Reviews-tab" data-bs-toggle="tab" href="#Reviews" role="tab" aria-controls="Reviews" aria-selected="false">Reviews ({{ count($product->reviews) }})</a>
                                 </li>
                             </ul>
                             <div class="tab-content shop_info_tab">
@@ -186,34 +175,34 @@
                                     <p>{!! $product->long_description !!}</p>
 
                                 </div>
-                                <div class="tab-pane fade" id="Additional-info" role="tabpanel" aria-labelledby="Additional-info-tab">
-                                    <table class="table table-bordered">
-                                        <tr>
-                                            <td>Capacity</td>
-                                            <td>5 Kg</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Color</td>
-                                            <td>Black, Brown, Red,</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Water Resistant</td>
-                                            <td>Yes</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Material</td>
-                                            <td>Artificial Leather</td>
-                                        </tr>
-                                    </table>
-                                </div>
+{{--                                <div class="tab-pane fade" id="Additional-info" role="tabpanel" aria-labelledby="Additional-info-tab">--}}
+{{--                                    <table class="table table-bordered">--}}
+{{--                                        <tr>--}}
+{{--                                            <td>Capacity</td>--}}
+{{--                                            <td>5 Kg</td>--}}
+{{--                                        </tr>--}}
+{{--                                        <tr>--}}
+{{--                                            <td>Color</td>--}}
+{{--                                            <td>Black, Brown, Red,</td>--}}
+{{--                                        </tr>--}}
+{{--                                        <tr>--}}
+{{--                                            <td>Water Resistant</td>--}}
+{{--                                            <td>Yes</td>--}}
+{{--                                        </tr>--}}
+{{--                                        <tr>--}}
+{{--                                            <td>Material</td>--}}
+{{--                                            <td>Artificial Leather</td>--}}
+{{--                                        </tr>--}}
+{{--                                    </table>--}}
+{{--                                </div>--}}
+
                                 <div class="tab-pane fade" id="Reviews" role="tabpanel" aria-labelledby="Reviews-tab">
                                     <div class="comments">
-                                        <h5 class="product_tab_title">2 Review For <span>Blue Dress For Woman</span></h5>
+                                        <h5 class="product_tab_title">Review For <span>{{$product->subcategory->name}}</span></h5>
                                         <ul class="list_none comment_list mt-4">
+                                           @foreach($product->reviews as $review)
                                             <li>
-                                                <div class="comment_img">
-                                                    <img src="{{asset('/')}}website/assets/images/user1.jpg" alt="user1"/>
-                                                </div>
+
                                                 <div class="comment_block">
                                                     <div class="rating_wrap">
                                                         <div class="rating">
@@ -221,63 +210,60 @@
                                                         </div>
                                                     </div>
                                                     <p class="customer_meta">
-                                                        <span class="review_author">Alea Brooks</span>
-                                                        <span class="comment-date">March 5, 2018</span>
+                                                        <span class="review_author">{{$review->author}}</span>
+                                                        <span class="comment-date">{{$review->updated_at}}</span>
                                                     </p>
                                                     <div class="description">
                                                         <p>Lorem Ipsumin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit. Duis sed odio sit amet nibh vulputate</p>
                                                     </div>
                                                 </div>
                                             </li>
-                                            <li>
-                                                <div class="comment_img">
-                                                    <img src="{{asset('/')}}website/assets/images/user2.jpg" alt="user2"/>
-                                                </div>
-                                                <div class="comment_block">
-                                                    <div class="rating_wrap">
-                                                        <div class="rating">
-                                                            <div class="product_rate" style="width:60%"></div>
-                                                        </div>
-                                                    </div>
-                                                    <p class="customer_meta">
-                                                        <span class="review_author">Grace Wong</span>
-                                                        <span class="comment-date">June 17, 2018</span>
-                                                    </p>
-                                                    <div class="description">
-                                                        <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters</p>
-                                                    </div>
-                                                </div>
-                                            </li>
+                                            @endforeach
                                         </ul>
                                     </div>
+                                    @if(Session('customer_id'))
                                     <div class="review_form field_form">
                                         <h5>Add a review</h5>
-                                        <form class="row mt-3">
+
+                                        <form class="row mt-3" action="{{route('review.store')}}" method="POST">
+                                            @csrf
+                                            <p class="text-center">{{session('message')}}</p>
+                                            <input  type="hidden" name="product_id"  value="{{$product->id}}">
                                             <div class="form-group col-12 mb-3">
                                                 <div class="star_rating">
-                                                    <span data-value="1"><i class="far fa-star"></i></span>
-                                                    <span data-value="2"><i class="far fa-star"></i></span>
-                                                    <span data-value="3"><i class="far fa-star"></i></span>
-                                                    <span data-value="4"><i class="far fa-star"></i></span>
-                                                    <span data-value="5"><i class="far fa-star"></i></span>
+                                                    <input type="radio" id="star5" name="rating" value="5">
+                                                    <label for="star5"><i class="far fa-star"></i></label>
+
+                                                    <input type="radio" id="star4" name="rating" value="4">
+                                                    <label for="star4"><i class="far fa-star"></i></label>
+
+                                                    <input type="radio" id="star3" name="rating" value="3">
+                                                    <label for="star3"><i class="far fa-star"></i></label>
+
+                                                    <input type="radio" id="star2" name="rating" value="2">
+                                                    <label for="star2"><i class="far fa-star"></i></label>
+
+                                                    <input type="radio" id="star1" name="rating" value="1">
+                                                    <label for="star1"><i class="far fa-star"></i></label>
                                                 </div>
                                             </div>
                                             <div class="form-group col-12 mb-3">
-                                                <textarea required="required" placeholder="Your review *" class="form-control" name="message" rows="4"></textarea>
+                                                <textarea required="required" placeholder="Your review *" class="form-control" name="comments" rows="4"></textarea>
                                             </div>
-                                            <div class="form-group col-md-6 mb-3">
-                                                <input required="required" placeholder="Enter Name *" class="form-control" name="name" type="text">
+                                            <div class="form-group col-md-12 mb-3">
+                                                <input required="required" placeholder="Enter Name *" class="form-control" name="author" type="text">
                                             </div>
-                                            <div class="form-group col-md-6 mb-3">
-                                                <input required="required" placeholder="Enter Email *" class="form-control" name="email" type="email">
-                                            </div>
-
+{{--                                            <div class="form-group col-md-6 mb-3">--}}
+{{--                                                <input required="required" placeholder="Enter Email *" class="form-control" name="email" type="email">--}}
+{{--                                            </div>--}}
                                             <div class="form-group col-12 mb-3">
                                                 <button type="submit" class="btn btn-fill-out" name="submit" value="Submit">Submit Review</button>
                                             </div>
                                         </form>
                                     </div>
+                                    @endif
                                 </div>
+
                             </div>
                         </div>
                     </div>
