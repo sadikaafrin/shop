@@ -46,9 +46,9 @@
                             <div class="col-md-9">
                                 <select class="form-control" name="courier_id">
                                     <option value=""> -- Select Courier Info --</option>
-                                    <option value="1" {{$order->courier_id == '1' ? 'selected' : ''}}>S A Proribahon</option>
-                                    <option value="2" {{$order->courier_id == '2' ? 'selected' : ''}}>Sundarbahan</option>
-                                    <option value="3" {{$order->courier_id == '3' ? 'selected' : ''}}>Stead Fast</option>
+                                    <option value="1" {{$order->courier_id == '1' ? 'selected' : ' '}}>S A Proribahon</option>
+                                    <option value="2" {{$order->courier_id == '2' ? 'selected' : ' '}}>Sundarbahan</option>
+                                    <option value="3" {{$order->courier_id == '3' ? 'selected' : ' '}}>Stead Fast</option>
                                 </select>
                             </div>
                         </div>

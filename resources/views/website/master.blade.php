@@ -145,7 +145,7 @@
         <div class="container">
             <div class="nav_block">
                 <a class="navbar-brand" href="{{route('home')}}">
-                    <img class="logo_dark" src="{{asset('/')}}website/assets/images/logo_dark.png" alt="logo">
+                    <img class="logo_dark" src="{{asset('/')}}website/assets/images/Shoppers.png" style="height: 100px; width: 100px; " alt="logo">
                 </a>
                 <div class="product_search_form radius_input search_form_btn">
                     <form>
@@ -304,7 +304,7 @@
                 <div class="col-lg-4 col-md-12 col-sm-12">
                     <div class="widget">
                         <div class="footer_logo">
-                            <a href="#"><img src="{{asset('/')}}website/assets/images/logo_dark.png" alt="logo"/></a>
+                            <a href="#"><img src="{{asset('/')}}website/assets/images/Shoppers.png" alt="logo" style="height: 40px; width: 50px;"/></a>
                         </div>
                         <p class="mb-3">If you are going to use of Lorem Ipsum need to be sure there isn't anything hidden of text</p>
                         <ul class="contact_info">

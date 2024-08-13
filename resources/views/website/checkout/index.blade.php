@@ -190,7 +190,7 @@
                                         <td>{{$coupon=Session::get('coupon')}}</td>
                                         @else
                                             <td>{{$coupon=0}}</td>
-                                            @endif
+                                        @endif
                                     </tr>
 
 {{--                                    @if(Session::has('coupon'))--}}
@@ -215,7 +215,7 @@
 
                                                     $.ajax({
                                                         type: 'GET',
-                                                        url: '{{ route('checkout.close') }}',
+                                                        url: '{{route('checkout.close')}}',
                                                         success: function (data) {
                                                             $('#couponContainer').remove(); // Remove the coupon container
                                                             // Optionally, you can display a success message here
@@ -239,12 +239,11 @@
                                     </tr>
                                     <tr>
                                         <th>Total</th>
-                                        <td class="product-subtotal">{{$total = $sum + $tax + $shipping + $coupon}}</td>
+                                        <td class="product-subtotal">{{($total = $sum + $tax + $shipping) - $coupon}}</td>
                                         <?php
                                         Session::put('order_total', round($total));
                                         Session::put('tax_total', round($tax));
                                         Session::put('shipping_total', round($shipping));
-//                                        Session::put('coupon_id', round($coupon));
                                         Session::put('coupon', round($coupon));
                                         ?>
                                     </tr>

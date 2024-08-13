@@ -8,13 +8,13 @@
             <div class="row align-items-center">
                 <div class="col-md-6">
                     <div class="page-title">
-                        <h1>Product Detail</h1>
+                        <h1>{{$product->name}}</h1>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <ol class="breadcrumb justify-content-md-end">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item"><a href="#">Pages</a></li>
+                        <li class="breadcrumb-item"><a href="{{route('home')}}">Home</a></li>
+                        <li class="breadcrumb-item"><a href="{{route('product-category', ['id' => $product->category->id])}}">Shop</a></li>
                         <li class="breadcrumb-item active">Product Detail</li>
                     </ol>
                 </div>
@@ -214,7 +214,7 @@
                                                         <span class="comment-date">{{$review->updated_at}}</span>
                                                     </p>
                                                     <div class="description">
-                                                        <p>Lorem Ipsumin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit. Duis sed odio sit amet nibh vulputate</p>
+                                                        <p>{{$review->comments}}</p>
                                                     </div>
                                                 </div>
                                             </li>

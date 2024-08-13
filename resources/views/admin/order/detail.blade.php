@@ -25,6 +25,10 @@
                             <th>Order Id</th>
                             <td>{{$order->id}}</td>
                         </tr>
+{{--                        <tr>--}}
+{{--                            <th>Customer Info</th>--}}
+{{--                            <td>{{$order->customer->name.'('.$order->customer->mobile.')'}}</td>--}}
+{{--                        </tr>--}}
                         <tr>
                             <th>Customer Info</th>
                             <td>{{$order->customer->name.'('.$order->customer->mobile.')'}}</td>
@@ -88,6 +92,7 @@
                         <thead>
                         <tr>
                             <th class="wd-15p border-bottom-0">SL NO</th>
+                            <th class="wd-15p border-bottom-0">Product Id</th>
                             <th class="wd-15p border-bottom-0">Product Name</th>
                             <th class="wd-20p border-bottom-0">Product Price</th>
                             <th class="wd-15p border-bottom-0">Product Quantity</th>
@@ -100,6 +105,7 @@
                         @foreach($order->orderDetail as $orderDetail)
                             <tr>
                                 <td>{{$loop->iteration}}</td>
+                                <td>{{$orderDetail->product_id}}</td>
                                 <td>{{$orderDetail->product_name}}</td>
                                 <td>{{$orderDetail->product_price}}</td>
                                 <td>{{$orderDetail->product_qty}}</td>

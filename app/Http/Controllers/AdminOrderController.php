@@ -4,12 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\Order;
 use App\Models\OrderDetail;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use PDF;
 
 class AdminOrderController extends Controller
 {
-    private $orders, $order;
+    private $orders, $order, $orderDetails, $product;
 
     public function index()
     {
@@ -63,6 +64,14 @@ class AdminOrderController extends Controller
             $this->order->delivery_status = $request->order_status;
             $this->order->payment_status = $request->order_status;
             $this->order->payment_amount = $this->order->order_total;
+
+            $this->orderDetails = OrderDetail::where('order_id', $id)->get();
+            foreach ($this->orderDetails as $orderDetail)
+            {
+                $this->product = Product::find($orderDetail->product_id);
+                $this->product->stock_amount = $this->product->stock_amount - $orderDetail->product_qty;
+                $this->product->save();
+            }
         }
         $this->order->save();
         return redirect('/admin/all-order')->with('message', 'Order info update successfully.');

@@ -61,13 +61,14 @@ class CheckoutController extends Controller
 
     public function close()
     {
-        Coupon::remove();
+        session()->forget('coupon', $coupon->discount_amount);
+//        Coupon::remove();
+//        return response()->json(['message' => 'Coupon removed.']);
 
 //        if (request()->ajax()) {
 //            return response()->json(['message' => 'Coupon removed.']);
 //        }
 //        return back()->with('message', 'coupon removed.');
-        return response()->json(['message' => 'Coupon removed.']);
     }
 
 

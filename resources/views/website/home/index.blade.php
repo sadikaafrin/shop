@@ -6,7 +6,7 @@
     <div class="banner_section slide_medium shop_banner_slider staggered-animation-wrap">
         <div id="carouselExampleControls" class="carousel slide carousel-fade light_arrow" data-bs-ride="carousel">
             <div class="carousel-inner">
-                <div class="carousel-item background_bg active" data-img-src="{{asset('/')}}website/assets/images/banner16.jpg">
+                <div class="carousel-item background_bg active" data-img-src="http://127.0.0.1:8000/upload/category-images/sunglass.jpg">
                     <div class="banner_slide_content banner_content_inner">
                         <div class="container">
                             <div class="row">
@@ -21,7 +21,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="carousel-item background_bg" data-img-src="{{asset('/')}}website/assets/images/banner17.jpg">
+                <div class="carousel-item background_bg" data-img-src="http://127.0.0.1:8000/upload/product-other-images/walet.jpg">
                     <div class="banner_slide_content banner_content_inner">
                         <div class="container">
                             <div class="row">
@@ -36,7 +36,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="carousel-item background_bg" data-img-src="{{asset('/')}}website/assets/images/banner18.jpg">
+                <div class="carousel-item background_bg" data-img-src="http://127.0.0.1:8000/upload/product-other-images/fan3.jpg">
                     <div class="banner_slide_content banner_content_inner">
                         <div class="container">
                             <div class="row">
@@ -415,62 +415,22 @@
                 <div class="row justify-content-center">
                     <div class="col-lg-9">
                         <div class="testimonial_wrap testimonial_style1 carousel_slider owl-carousel owl-theme nav_style2" data-nav="true" data-dots="false" data-center="true" data-loop="true" data-autoplay="true" data-items='1'>
-                            <div class="testimonial_box">
-                                <div class="testimonial_desc">
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A aliquam amet animi blanditiis consequatur debitis dicta distinctio, enim error eum iste libero modi nam natus perferendis possimus quasi sint sit tempora voluptatem.</p>
-                                </div>
-                                <div class="author_wrap">
-                                    <div class="author_img">
-                                        <img src="{{asset('/')}}website/assets/images/user_img1.jpg" alt="user_img1" />
-                                    </div>
-                                    <div class="author_name">
-                                        <h6>Lissa Castro</h6>
-                                        <span>Designer</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="testimonial_box">
-                                <div class="testimonial_desc">
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A aliquam amet animi blanditiis consequatur debitis dicta distinctio, enim error eum iste libero modi nam natus perferendis possimus quasi sint sit tempora voluptatem.</p>
-                                </div>
-                                <div class="author_wrap">
-                                    <div class="author_img">
-                                        <img src="{{asset('/')}}website/assets/images/user_img2.jpg" alt="user_img2" />
-                                    </div>
-                                    <div class="author_name">
-                                        <h6>Alden Smith</h6>
-                                        <span>Designer</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="testimonial_box">
-                                <div class="testimonial_desc">
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A aliquam amet animi blanditiis consequatur debitis dicta distinctio, enim error eum iste libero modi nam natus perferendis possimus quasi sint sit tempora voluptatem.</p>
-                                </div>
-                                <div class="author_wrap">
-                                    <div class="author_img">
-                                        <img src="{{asset('/')}}website/assets/images/user_img3.jpg" alt="user_img3" />
-                                    </div>
-                                    <div class="author_name">
-                                        <h6>Daisy Lana</h6>
-                                        <span>Designer</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="testimonial_box">
-                                <div class="testimonial_desc">
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A aliquam amet animi blanditiis consequatur debitis dicta distinctio, enim error eum iste libero modi nam natus perferendis possimus quasi sint sit tempora voluptatem.</p>
-                                </div>
-                                <div class="author_wrap">
-                                    <div class="author_img">
-                                        <img src="{{asset('/')}}website/assets/images/user_img4.jpg" alt="user_img4" />
-                                    </div>
-                                    <div class="author_name">
-                                        <h6>John Becker</h6>
-                                        <span>Designer</span>
-                                    </div>
-                                </div>
-                            </div>
+{{--                            @foreach($product->reviews as $review)--}}
+{{--                                <div class="testimonial_box">--}}
+{{--                                    <div class="testimonial_desc">--}}
+{{--                                        <p>{{$review->author}}</p>--}}
+{{--                                    </div>--}}
+{{--                                    <div class="author_wrap">--}}
+{{--                                        <div class="author_name">--}}
+{{--                                            <h6>{{$review->comments}}</h6>--}}
+{{--                                            <span>{{ $review->rating }} Stars</span>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                            @endforeach--}}
+
+{{--                                --}}{{-- Debugging --}}
+{{--                                @dd($product->reviews)--}}
                         </div>
                     </div>
                 </div>

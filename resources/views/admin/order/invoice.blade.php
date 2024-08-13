@@ -132,7 +132,7 @@
                                             <td>
                                                 Invoice #: 000{{$order->id}}<br />
                                                 Order Date: {{$order->order_date}}<br />
-                                                Invoice Date: {{date('Y-m-d')}}
+                                                Invoice Date: {{date('Y-m-d H:i:s')}}
                                             </td>
                                         </tr>
                                     </table>
@@ -151,10 +151,8 @@
                                             </td>
 
                                             <td>
-                                                <h4>Company Information</h4>
-                                                Acme Corp.<br />
-                                                John Doe<br />
-                                                john@example.com
+                                                <h4>Delivery Address</h4>
+                                                {{$order->delivery_address}}.<br />
                                             </td>
                                         </tr>
                                     </table>
@@ -183,9 +181,9 @@
                             @foreach($order->orderDetail as $orderDetail)
                                 <tr class="item">
                                     <td>{{$orderDetail->product_name}}</td>
-                                    <td style="text-align: center">{{$orderDetail->product_price}}</td>
+                                    <td style="text-align: center">{{number_format($orderDetail->product_price)}}</td>
                                     <td style="text-align: center">{{$orderDetail->product_qty}}</td>
-                                    <td style="text-align: right">{{$total = $orderDetail->product_price * $orderDetail->product_qty}}</td>
+                                    <td style="text-align: right">{{number_format($total = $orderDetail->product_price * $orderDetail->product_qty)}}</td>
                                 </tr>
                                 @php($sum=$sum + $total)
                             @endforeach
@@ -195,7 +193,7 @@
                             </tr>
                             <tr class="total">
                                 <td></td>
-                                <td colspan="3">Tax Amount(15%): {{$order->tax_total}}</td>
+                                <td colspan="3">Tax Amount(15%): {{number_format($order->tax_total)}}</td>
                             </tr>
                             <tr class="total">
                                 <td></td>
@@ -203,7 +201,7 @@
                             </tr>
                             <tr class="total">
                                 <td></td>
-                                <td colspan="3">Total Payable: {{$order->order_total}}</td>
+                                <td colspan="3">Total Payable: {{number_format($order->order_total)}}</td>
                             </tr>
                         </table>
                     </div>

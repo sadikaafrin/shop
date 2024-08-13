@@ -56,7 +56,7 @@ class CustomerProfileController extends Controller
 
     public function order()
     {
-        $this->orders = Order::where('customer_id', Session::get('customer_id'))->get();
+        $this->orders = Order::where('customer_id', Session::get('customer_id'))->simplePaginate(5);
         return view('customer.order', ['orders' =>  $this->orders]);
     }
 

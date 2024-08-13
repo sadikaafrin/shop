@@ -33,30 +33,6 @@ class WebsiteController extends Controller
             $trendingProducts[] = $p;
         }
 
-//        $id  = DB::table('products')
-//            ->leftJoin('order_details','products.id','=','order_details.product_id')
-//            ->selectRaw('products.id, SUM(order_details.product_qty) as total')
-//            ->groupBy('products.id')
-//            ->orderBy('total','desc')
-//
-//            ->get();
-//        $topCategories = [];
-//        foreach ($id as $top)
-//        {
-//            $pro = Product::findOrFail($top->id);
-//            $pro->totalQty = $top->total;
-//            $topCategories[] = $pro;
-//        }
-
-//        $topSellingCategories = DB::table('products')
-//            ->join('categories', 'products.category_id', '=', 'categories.id')
-//            ->leftJoin('order_details', 'products.id', '=', 'order_details.product_id')
-//            ->selectRaw('categories.id, categories.name, SUM(order_details.product_qty) as total')
-//            ->groupBy('categories.id')
-//            ->orderBy('total', 'desc')
-//
-//            ->get();
-
         $this->newarrival = Product::where('product_status', 1)->get(['id', 'name', 'selling_price', 'image']);
         $this->bestselling = Product::where('product_status', 2)->get(['id', 'name', 'selling_price', 'image']);
         $this->featured = Product::where('product_status', 3)->get(['id', 'name', 'selling_price', 'image']);
